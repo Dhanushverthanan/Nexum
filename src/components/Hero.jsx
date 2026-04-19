@@ -10,6 +10,9 @@ const Hero = () => {
       <div style={{...styles.orb, bottom: '20%', right: '10%', background: 'var(--color-secondary)'}}></div>
 
       <div className="container animate-fade-in" style={styles.content}>
+        <div className="badge">
+          DIGITAL TRANSFORMATION × EDTECH
+        </div>
         <h1 style={styles.title}>
           Transforming Businesses.<br/>
           <span style={styles.highlight}>Empowering Minds.</span>
@@ -17,6 +20,13 @@ const Hero = () => {
         <p style={styles.subtitle}>
           NEXUM delivers cutting-edge digital transformation services and industry-leading educational programs to bridge the gap between technology and talent.
         </p>
+        
+        <div style={styles.chipGroup}>
+          <span className="chip">Web Dev & AI Apps</span>
+          <span className="chip">UI/UX Design</span>
+          <span className="chip">Corporate Training</span>
+          <span className="chip">Tech Ed</span>
+        </div>
         <div style={styles.ctaGroup}>
           <a href="#services" className="btn btn-primary">Explore Services</a>
           <a href="#projects" className="btn btn-secondary">Our Projects</a>
@@ -74,6 +84,13 @@ const styles = {
     gap: '1rem',
     justifyContent: 'center',
     flexWrap: 'wrap',
+  },
+  chipGroup: {
+    display: 'flex',
+    gap: '0.75rem',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginBottom: '2.5rem',
   }
 };
 

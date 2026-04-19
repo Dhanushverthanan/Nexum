@@ -65,7 +65,7 @@ const styles = {
   },
   icon: {
     color: 'var(--color-primary)',
-    background: 'rgba(0, 196, 180, 0.1)',
+    background: 'rgba(6, 182, 212, 0.1)',
     padding: '1rem',
     borderRadius: '50%',
     display: 'flex',

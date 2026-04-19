@@ -24,9 +24,9 @@ const EdTech = () => {
   ];
 
   return (
-    <section id="edtech" style={{background: 'rgba(19, 119, 185, 0.03)'}}>
+    <section id="edtech" style={{background: 'var(--color-bg-alt)'}}>
       <div className="container">
-        <h2 className="section-title" style={{background: 'linear-gradient(135deg, #0072ff, #00c4b4)', WebkitBackgroundClip: 'text'}}>Learn. Grow. Get Placed.</h2>
+        <h2 className="section-title" style={{background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text'}}>Learn. Grow. Get Placed.</h2>
         <p className="section-subtitle">Bridging the gap between academia and industry with hands-on training and real-world projects.</p>
 
         <div className="grid grid-3">
@@ -75,10 +75,10 @@ const styles = {
   },
   icon: {
     display: 'inline-flex',
-    background: 'linear-gradient(135deg, rgba(0, 114, 255, 0.2), rgba(0, 196, 180, 0.2))',
+    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(8, 145, 178, 0.2))',
     padding: '1.25rem',
     borderRadius: '50%',
-    color: '#fff',
+    color: 'var(--color-secondary)',
     marginBottom: '1.5rem',
   },
   title: {
@@ -97,7 +97,7 @@ const styles = {
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: '2rem',
-    background: 'linear-gradient(90deg, #ffffff, rgba(19, 119, 185, 0.05))',
+    background: 'linear-gradient(90deg, #ffffff, rgba(6, 182, 212, 0.05))',
     borderLeft: '4px solid var(--color-primary)',
   }
 };
