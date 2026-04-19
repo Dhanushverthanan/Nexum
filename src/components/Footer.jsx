@@ -4,129 +4,67 @@ import logoUrl from '../public/logo.png';
 
 const Footer = () => {
   return (
-    <footer style={styles.footer}>
-      <div className="container" style={styles.container}>
-
-        <div style={styles.brand}>
-          <div style={styles.logoContainer}>
-            <img
-              src={logoUrl}
-              alt="NEXUM Logo"
-              style={{ height: '35px', width: '35px', borderRadius: '50%', objectFit: 'cover', marginRight: '10px' }}
+    <footer className="bg-white pt-24 border-t border-black/5">
+      <div className="container-custom grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-3 mb-6">
+            <img 
+              src={logoUrl} 
+              alt="NEXUM Logo" 
+              className="h-10 w-10 rounded-full object-cover" 
             />
-            <span style={styles.logoText}>NEXUM</span>
+            <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+              NEXUM
+            </span>
           </div>
-          <p style={styles.desc}>
+          <p className="text-slate-500 mb-8 max-w-sm leading-relaxed">
             Transforming businesses through digital excellence and empowering the workforce of tomorrow.
           </p>
-          <div style={styles.socials}>
-            <a href="#" style={styles.socialIcon}><FiLinkedin size={20} /></a>
-            <a href="#" style={styles.socialIcon}><FiTwitter size={20} /></a>
-            <a href="#" style={styles.socialIcon}><FiInstagram size={20} /></a>
-            <a href="#" style={styles.socialIcon}><FiFacebook size={20} /></a>
+          <div className="flex gap-4">
+            <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors duration-300">
+              <FiLinkedin size={20} />
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors duration-300">
+              <FiTwitter size={20} />
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors duration-300">
+              <FiInstagram size={20} />
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors duration-300">
+              <FiFacebook size={20} />
+            </a>
           </div>
         </div>
 
-        <div style={styles.linksBlock}>
-          <h4 style={styles.linksTitle}>Quick Links</h4>
-          <ul style={styles.list}>
-            <li><a href="#home" style={styles.link}>Home</a></li>
-            <li><a href="#about" style={styles.link}>About Us</a></li>
-            <li><a href="#services" style={styles.link}>Services</a></li>
-            <li><a href="#projects" style={styles.link}>Projects</a></li>
+        <div>
+          <h4 className="text-lg font-bold text-slate-800 mb-6">Quick Links</h4>
+          <ul className="flex flex-col gap-4">
+            <li><a href="#home" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Home</a></li>
+            <li><a href="#about" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">About Us</a></li>
+            <li><a href="#services" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Services</a></li>
+            <li><a href="#projects" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Projects</a></li>
           </ul>
         </div>
 
-        <div style={styles.linksBlock}>
-          <h4 style={styles.linksTitle}>Services</h4>
-          <ul style={styles.list}>
-            <li><a href="#services" style={styles.link}>Web Development</a></li>
-            <li><a href="#services" style={styles.link}>UI/UX Design</a></li>
-            <li><a href="#services" style={styles.link}>Analytics</a></li>
-            <li><a href="#edtech" style={styles.link}>EdTech Training</a></li>
+        <div>
+          <h4 className="text-lg font-bold text-slate-800 mb-6">Services</h4>
+          <ul className="flex flex-col gap-4">
+            <li><a href="#services" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Web Development</a></li>
+            <li><a href="#services" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">UI/UX Design</a></li>
+            <li><a href="#services" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Analytics</a></li>
+            <li><a href="#edtech" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">EdTech Training</a></li>
           </ul>
         </div>
       </div>
 
-      <div style={styles.bottom}>
-        <p>&copy; {new Date().getFullYear()} NEXUM Digital Transformation & EdTech. All Rights Reserved.</p>
+      <div className="border-t border-black/5 py-8 text-center bg-slate-50">
+        <p className="text-slate-500 text-sm">
+          &copy; {new Date().getFullYear()} NEXUM Digital Transformation & EdTech. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );
-};
-
-const styles = {
-  footer: {
-    background: '#ffffff',
-    paddingTop: '6rem',
-    borderTop: '1px solid rgba(0,0,0,0.05)',
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '4rem',
-    marginBottom: '4rem',
-  },
-  brand: {
-    flex: '2 1 300px',
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    marginBottom: '1.5rem',
-  },
-  logoText: {
-    fontSize: '1.5rem',
-    fontWeight: 800,
-    background: 'var(--gradient-primary)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  },
-  desc: {
-    color: 'var(--color-text-muted)',
-    marginBottom: '2rem',
-    lineHeight: 1.6,
-  },
-  socials: {
-    display: 'flex',
-    gap: '1rem',
-  },
-  socialIcon: {
-    color: 'var(--color-text)',
-    background: 'rgba(0,0,0,0.05)',
-    padding: '0.75rem',
-    borderRadius: '50%',
-    display: 'flex',
-    transition: 'all 0.3s ease',
-  },
-  linksBlock: {
-    flex: '1 1 150px',
-  },
-  linksTitle: {
-    color: 'var(--color-text)',
-    fontSize: '1.2rem',
-    marginBottom: '1.5rem',
-  },
-  list: {
-    listStyle: 'none',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  link: {
-    color: 'var(--color-text-muted)',
-    textDecoration: 'none',
-    transition: 'color 0.3s ease',
-  },
-  bottom: {
-    borderTop: '1px solid rgba(0,0,0,0.05)',
-    padding: '2rem',
-    textAlign: 'center',
-    color: 'var(--color-text-muted)',
-    fontSize: '0.9rem',
-    background: '#ffffff',
-  }
 };
 
 export default Footer;

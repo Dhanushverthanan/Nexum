@@ -1,97 +1,71 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
-    <section id="home" style={styles.heroSection}>
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
       <div className="gradient-bg"></div>
       
       {/* Decorative Blur Orbs */}
-      <div style={{...styles.orb, top: '20%', left: '10%', background: 'var(--color-primary)'}}></div>
-      <div style={{...styles.orb, bottom: '20%', right: '10%', background: 'var(--color-secondary)'}}></div>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.3, scale: 1 }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+        className="absolute w-72 h-72 rounded-full blur-[100px] -z-10 top-[20%] left-[10%] bg-primary"
+      ></motion.div>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.3, scale: 1 }}
+        transition={{ duration: 2.5, repeat: Infinity, repeatType: "mirror", delay: 0.5 }}
+        className="absolute w-72 h-72 rounded-full blur-[100px] -z-10 bottom-[20%] right-[10%] bg-primary-dark"
+      ></motion.div>
 
-      <div className="container animate-fade-in" style={styles.content}>
-        <div className="badge">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="container-custom text-center max-w-4xl z-10 flex flex-col items-center"
+      >
+        <motion.div variants={itemVariants} className="badge mb-6">
           DIGITAL TRANSFORMATION × EDTECH
-        </div>
-        <h1 style={styles.title}>
-          Transforming Businesses.<br/>
-          <span style={styles.highlight}>Empowering Minds.</span>
-        </h1>
-        <p style={styles.subtitle}>
-          NEXUM delivers cutting-edge digital transformation services and industry-leading educational programs to bridge the gap between technology and talent.
-        </p>
+        </motion.div>
         
-        <div style={styles.chipGroup}>
+        <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+          Transforming Businesses.<br className="hidden md:block"/>
+          <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent"> Empowering Minds.</span>
+        </motion.h1>
+        
+        <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl">
+          NEXUM delivers cutting-edge digital transformation services and industry-leading educational programs to bridge the gap between technology and talent.
+        </motion.p>
+        
+        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 mb-10">
           <span className="chip">Web Dev & AI Apps</span>
           <span className="chip">UI/UX Design</span>
           <span className="chip">Corporate Training</span>
           <span className="chip">Tech Ed</span>
-        </div>
-        <div style={styles.ctaGroup}>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
           <a href="#services" className="btn btn-primary">Explore Services</a>
           <a href="#projects" className="btn btn-secondary">Our Projects</a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
-};
-
-const styles = {
-  heroSection: {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '80px',
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  orb: {
-    position: 'absolute',
-    width: '300px',
-    height: '300px',
-    borderRadius: '50%',
-    filter: 'blur(100px)',
-    opacity: 0.3,
-    zIndex: -1,
-    animation: 'pulse 4s infinite alternate',
-  },
-  content: {
-    textAlign: 'center',
-    maxWidth: '800px',
-    zIndex: 1,
-  },
-  title: {
-    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-    fontWeight: 800,
-    lineHeight: 1.1,
-    marginBottom: '1.5rem',
-  },
-  highlight: {
-    background: 'var(--gradient-primary)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  },
-  subtitle: {
-    fontSize: '1.25rem',
-    color: 'var(--color-text-muted)',
-    marginBottom: '2.5rem',
-    maxWidth: '600px',
-    margin: '0 auto 2.5rem',
-  },
-  ctaGroup: {
-    display: 'flex',
-    gap: '1rem',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  chipGroup: {
-    display: 'flex',
-    gap: '0.75rem',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    marginBottom: '2.5rem',
-  }
 };
 
 export default Hero;

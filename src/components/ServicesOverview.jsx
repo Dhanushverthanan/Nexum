@@ -1,12 +1,13 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FiCode, FiLayout, FiPieChart, FiCpu } from 'react-icons/fi';
 
 const ServicesOverview = () => {
   const services = [
-    { icon: <FiCode size={24} />, label: "Web Dev" },
-    { icon: <FiLayout size={24} />, label: "UI/UX Design" },
-    { icon: <FiPieChart size={24} />, label: "Analytics" },
-    { icon: <FiCpu size={24} />, label: "AI Solutions" },
+    { icon: <FiCode size={28} className="text-primary" />, label: "Web Dev" },
+    { icon: <FiLayout size={28} className="text-primary" />, label: "UI/UX Design" },
+    { icon: <FiPieChart size={28} className="text-primary" />, label: "Analytics" },
+    { icon: <FiCpu size={28} className="text-primary" />, label: "AI Solutions" },
   ];
 
   const stats = [
@@ -16,82 +17,60 @@ const ServicesOverview = () => {
     { value: "99%", label: "Success Rate" },
   ];
 
-  return (
-    <section style={styles.section}>
-      <div className="container">
-        
-        {/* Services Strip */}
-        <div className="glass-card" style={styles.strip}>
-          {services.map((item, idx) => (
-            <div key={idx} style={styles.stripItem}>
-              <div style={styles.icon}>{item.icon}</div>
-              <span style={styles.label}>{item.label}</span>
-            </div>
-          ))}
-        </div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
 
-        {/* Why Nexum Stats */}
-        <div style={styles.statsContainer}>
-          {stats.map((stat, idx) => (
-            <div key={idx} style={styles.statBox}>
-              <h3 style={styles.statValue}>{stat.value}</h3>
-              <p style={styles.statLabel}>{stat.label}</p>
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4 } }
+  };
+
+  return (
+    <section className="py-24 px-6 relative max-w-7xl mx-auto w-full">
+      {/* Services Strip */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="glass-card flex flex-wrap justify-around items-center gap-8 mb-24 py-10"
+      >
+        {services.map((item, idx) => (
+          <div key={idx} className="flex flex-col items-center gap-4 group cursor-pointer">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              {item.icon}
             </div>
-          ))}
-        </div>
-        
-      </div>
+            <span className="font-semibold text-lg text-slate-800 transition-colors duration-300 group-hover:text-primary-dark">
+              {item.label}
+            </span>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Why Nexum Stats */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center"
+      >
+        {stats.map((stat, idx) => (
+          <motion.div key={idx} variants={itemVariants} className="flex flex-col items-center">
+            <h3 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-2">
+              {stat.value}
+            </h3>
+            <p className="text-slate-500 font-medium text-lg">{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
-};
-
-const styles = {
-  section: {
-    padding: '4rem 2rem 2rem 2rem',
-  },
-  strip: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    gap: '2rem',
-    marginBottom: '6rem',
-    padding: '2.5rem',
-  },
-  stripItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.75rem',
-  },
-  icon: {
-    color: 'var(--color-primary)',
-    background: 'rgba(6, 182, 212, 0.1)',
-    padding: '1rem',
-    borderRadius: '50%',
-    display: 'flex',
-  },
-  label: {
-    fontWeight: 600,
-    fontSize: '1.1rem',
-  },
-  statsContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: '2rem',
-    textAlign: 'center',
-  },
-  statValue: {
-    fontSize: '3rem',
-    fontWeight: 800,
-    background: 'var(--gradient-primary)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    marginBottom: '0.5rem',
-  },
-  statLabel: {
-    color: 'var(--color-text-muted)',
-    fontWeight: 500,
-  }
 };
 
 export default ServicesOverview;

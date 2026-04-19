@@ -24,147 +24,70 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`navbar ${isScrolled ? 'glass' : ''}`} style={styles.header}>
-      <div className="container" style={styles.container}>
-        <div style={styles.logoContainer}>
-          <img
-            src={logoUrl}
-            alt="NEXUM Logo"
-            style={{ height: '40px', width: '40px', borderRadius: '50%', objectFit: 'cover' }}
-          />
-          <span style={styles.logoText}>NEXUM</span>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
+      <div className="container-custom flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img src={logoUrl} alt="NEXUM Logo" className="h-10 w-10 rounded-full object-cover shadow-sm" />
+          <span className="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+            NEXUM
+          </span>
         </div>
 
-        <nav style={styles.navDesktop}>
-          <ul style={styles.navList}>
+        {/* Desktop Nav */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={link.href} style={styles.navLink}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <a href="#contact" className="btn btn-primary" style={styles.ctaBtn}>Get in Touch</a>
-
-        <button style={styles.mobileToggle} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <FiX size={24} color="var(--color-text)" /> : <FiMenu size={24} color="var(--color-text)" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div style={styles.mobileMenu} className="glass">
-          <ul style={styles.mobileNavList}>
-            {navLinks.map((link) => (
-              <li key={link.name} style={styles.mobileNavItem}>
-                <a
-                  href={link.href}
-                  style={styles.mobileNavLink}
-                  onClick={() => setMobileMenuOpen(false)}
+                <a 
+                  href={link.href} 
+                  className="relative text-slate-700 font-medium hover:text-primary transition-colors duration-300 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
                 >
                   {link.name}
                 </a>
               </li>
             ))}
           </ul>
+        </nav>
+
+        {/* CTA & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <a href="#contact" className="hidden md:inline-flex btn btn-primary py-2 px-6 text-sm">
+            Get in Touch
+          </a>
+          
+          <button 
+            className="md:hidden text-slate-800 p-2 focus:outline-none" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-black/5 shadow-xl transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-screen py-6 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}
+      >
+        <ul className="flex flex-col items-center gap-6">
+          {navLinks.map((link) => (
+            <li key={link.name} className="w-full text-center">
+              <a
+                href={link.href}
+                className="block w-full text-lg font-medium text-slate-800 hover:text-primary transition-colors duration-300 px-6"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+          <li className="w-full px-6 pt-4 border-t border-black/5 flex justify-center">
+             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-primary w-full max-w-[200px]">Get in Touch</a>
+          </li>
+        </ul>
+      </div>
     </header>
   );
-};
-
-const styles = {
-  header: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    zIndex: 1000,
-    transition: 'all 0.3s ease',
-    padding: '1rem 2rem',
-  },
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-  },
-  logoSvg: {
-    display: 'block',
-  },
-  logoText: {
-    fontSize: '1.5rem',
-    fontWeight: 800,
-    letterSpacing: '1px',
-    background: 'var(--gradient-primary)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  },
-  navDesktop: {
-    display: 'flex',
-    '@media (maxWidth: 768px)': {
-      display: 'none',
-    }
-  },
-  navList: {
-    display: 'flex',
-    listStyle: 'none',
-    gap: '2rem',
-  },
-  navLink: {
-    color: 'var(--color-text)',
-    textDecoration: 'none',
-    fontWeight: 500,
-    transition: 'color 0.3s ease',
-  },
-  ctaBtn: {
-    padding: '0.5rem 1.5rem',
-    '@media (maxWidth: 768px)': {
-      display: 'none',
-    }
-  },
-  mobileToggle: {
-    display: 'none',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    '@media (maxWidth: 768px)': {
-      display: 'block',
-    }
-  },
-  mobileMenu: {
-    position: 'absolute',
-    top: '100%',
-    left: 0,
-    width: '100%',
-    padding: '2rem',
-    borderTop: '1px solid rgba(0,0,0,0.05)',
-    background: 'rgba(255,255,255,0.95)',
-  },
-  mobileNavList: {
-    listStyle: 'none',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
-    alignItems: 'center',
-  },
-  mobileNavItem: {
-    width: '100%',
-    textAlign: 'center',
-  },
-  mobileNavLink: {
-    color: 'var(--color-text)',
-    textDecoration: 'none',
-    fontSize: '1.2rem',
-    fontWeight: 500,
-    display: 'block',
-    width: '100%',
-  }
 };
 
 export default Navbar;

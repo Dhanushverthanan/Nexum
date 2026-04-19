@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FiExternalLink } from 'react-icons/fi';
 
 const Projects = () => {
@@ -30,114 +31,71 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects">
-      <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
-        <p className="section-subtitle">A glimpse into the digital experiences we've crafted for our partners and clients.</p>
+    <section id="projects" className="py-24 px-6 bg-background">
+      <div className="container-custom">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="section-subtitle">A glimpse into the digital experiences we've crafted for our partners and clients.</p>
+        </motion.div>
 
-        <div className="grid grid-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((proj, idx) => (
-            <div key={idx} className="glass-card" style={styles.card}>
-              <div style={styles.imageContainer}>
-                <img src={proj.image} alt={proj.name} style={styles.image} />
-                {!proj.isLive && <div style={styles.overlay}>Coming Soon</div>}
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="glass-card flex flex-col overflow-hidden p-0 group"
+            >
+              <div className="relative w-full h-56 overflow-hidden">
+                <img 
+                  src={proj.image} 
+                  alt={proj.name} 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110" 
+                />
+                {!proj.isLive && (
+                  <div className="absolute inset-0 bg-white/90 flex items-center justify-center font-bold text-xl tracking-wider text-primary">
+                    Coming Soon
+                  </div>
+                )}
               </div>
               
-              <div style={styles.content}>
-                <h3 style={styles.title}>{proj.name}</h3>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-bold text-slate-800 mb-4">{proj.name}</h3>
                 
-                <div style={styles.tags}>
+                <div className="flex flex-wrap gap-2 mb-4">
                   {proj.tags.map(tag => (
-                    <span key={tag} style={styles.tag}>{tag}</span>
+                    <span key={tag} className="bg-slate-100 border border-black/5 px-3 py-1 rounded-md text-xs font-semibold text-primary">
+                      {tag}
+                    </span>
                   ))}
                 </div>
 
-                <p style={styles.desc}>{proj.desc}</p>
+                <p className="text-slate-500 mb-8 flex-1">{proj.desc}</p>
                 
                 {proj.isLive ? (
-                  <a href={proj.link} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={styles.btn}>
-                    View Project <FiExternalLink style={{marginLeft: '0.5rem'}} />
+                  <a href={proj.link} target="_blank" rel="noopener noreferrer" className="btn btn-secondary w-full group/btn">
+                    View Project 
+                    <FiExternalLink className="ml-2 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
                   </a>
                 ) : (
-                  <button className="btn btn-secondary" disabled style={{...styles.btn, opacity: 0.5, cursor: 'not-allowed'}}>
+                  <button className="btn btn-secondary w-full opacity-50 cursor-not-allowed">
                     In Progress
                   </button>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-const styles = {
-  card: {
-    padding: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden',
-  },
-  imageContainer: {
-    width: '100%',
-    height: '200px',
-    position: 'relative',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'rgba(255,255,255,0.9)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontWeight: 700,
-    fontSize: '1.2rem',
-    letterSpacing: '1px',
-    color: 'var(--color-primary)',
-  },
-  content: {
-    padding: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-  },
-  title: {
-    fontSize: '1.4rem',
-    marginBottom: '1rem',
-  },
-  tags: {
-    display: 'flex',
-    gap: '0.5rem',
-    flexWrap: 'wrap',
-    marginBottom: '1rem',
-  },
-  tag: {
-    background: '#f1f5f9',
-    border: '1px solid rgba(0,0,0,0.05)',
-    padding: '0.2rem 0.6rem',
-    borderRadius: '4px',
-    fontSize: '0.8rem',
-    color: 'var(--color-primary)',
-    fontWeight: 500,
-  },
-  desc: {
-    color: 'var(--color-text-muted)',
-    fontSize: '0.95rem',
-    marginBottom: '2rem',
-    flex: 1,
-  },
-  btn: {
-    width: '100%',
-  }
 };
 
 export default Projects;

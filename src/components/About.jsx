@@ -1,90 +1,67 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FiTarget, FiHeart, FiZap } from 'react-icons/fi';
 
 const About = () => {
   const values = [
-    { icon: <FiZap size={24} />, title: "Innovation", desc: "Pushing boundaries with cutting-edge tech." },
-    { icon: <FiTarget size={24} />, title: "Impact", desc: "Creating solutions with measurable outcomes." },
-    { icon: <FiHeart size={24} />, title: "Integrity", desc: "Transparent, honest, and ethical practices." }
+    { icon: <FiZap size={28} />, title: "Innovation", desc: "Pushing boundaries with cutting-edge tech." },
+    { icon: <FiTarget size={28} />, title: "Impact", desc: "Creating solutions with measurable outcomes." },
+    { icon: <FiHeart size={28} />, title: "Integrity", desc: "Transparent, honest, and ethical practices." }
   ];
 
   return (
-    <section id="about">
-      <div className="container">
-        <h2 className="section-title">About NEXUM</h2>
-        <p className="section-subtitle">A collective of tech enthusiasts, educators, and visionaries dedicated to shaping the future of digital experience and learning.</p>
+    <section id="about" className="py-24 px-6 bg-white overflow-hidden relative">
+      <div className="container-custom">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="section-title">About NEXUM</h2>
+          <p className="section-subtitle">A collective of tech enthusiasts, educators, and visionaries dedicated to shaping the future of digital experience and learning.</p>
+        </motion.div>
 
-        <div style={styles.content}>
-          <div style={styles.textContent}>
-            <h3 style={styles.heading}>Our Story</h3>
-            <p style={styles.paragraph}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-3xl font-extrabold text-primary mb-6">Our Story</h3>
+            <p className="text-slate-500 text-lg leading-relaxed mb-6">
               Founded with the mission to bridge the growing gap between rapid technological advancement and available skilled talent, NEXUM exists at the intersection of Digital Transformation and EdTech. 
             </p>
-            <p style={styles.paragraph}>
+            <p className="text-slate-500 text-lg leading-relaxed border-l-4 border-l-primary/30 pl-6 italic">
               We partner with businesses to completely digitize their operations, creating seamless, modern, and highly performant platforms. Simultaneously, we empower the next generation of developers through our immersive training and placement programs.
             </p>
-          </div>
+          </motion.div>
 
-          <div style={styles.valuesGrid}>
+          <div className="grid gap-6">
             {values.map((v, idx) => (
-              <div key={idx} className="glass-card" style={styles.valueCard}>
-                <div style={styles.icon}>{v.icon}</div>
-                <h4 style={styles.valueTitle}>{v.title}</h4>
-                <p style={styles.valueDesc}>{v.desc}</p>
-              </div>
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                className="glass-card flex items-start gap-6 p-6 group hover:-translate-x-2"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary-dark/10 text-primary-dark flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  {v.icon}
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-slate-800 mb-2">{v.title}</h4>
+                  <p className="text-slate-500 leading-relaxed">{v.desc}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-const styles = {
-  content: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '4rem',
-    alignItems: 'center',
-    '@media (max-width: 900px)': {
-      gridTemplateColumns: '1fr',
-    }
-  },
-  heading: {
-    fontSize: '2rem',
-    marginBottom: '1.5rem',
-    color: 'var(--color-primary)',
-  },
-  paragraph: {
-    color: 'var(--color-text-muted)',
-    marginBottom: '1.5rem',
-    fontSize: '1.1rem',
-    lineHeight: 1.8,
-  },
-  valuesGrid: {
-    display: 'grid',
-    gap: '1.5rem',
-  },
-  valueCard: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '1.5rem',
-    padding: '1.5rem',
-  },
-  icon: {
-    color: 'var(--color-secondary)',
-    background: 'rgba(0, 114, 255, 0.1)',
-    padding: '1rem',
-    borderRadius: '12px',
-  },
-  valueTitle: {
-    fontSize: '1.2rem',
-    marginBottom: '0.5rem',
-  },
-  valueDesc: {
-    color: 'var(--color-text-muted)',
-    fontSize: '0.9rem',
-  }
 };
 
 export default About;
