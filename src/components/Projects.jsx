@@ -5,7 +5,7 @@ import { FiExternalLink } from 'react-icons/fi';
 const Projects = () => {
   const projects = [
     {
-      name: "Siva Ga Coffee Bar",
+      name: "Sivaga Coffee Bar",
       desc: "A modern coffee bar website with an elegant menu, gallery, and contact section. Built with clean UI for local business branding to enhance customer engagement.",
       tags: ["React", "Vite", "TailwindCSS"],
       link: "https://sivagacoffeebar.in/",
